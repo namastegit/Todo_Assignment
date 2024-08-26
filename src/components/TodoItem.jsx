@@ -24,23 +24,6 @@ function TodoItem({ todo }) {
     };
   }, [hoverTimer]);
 
-  const handleUpdateTodo = async (id, completed) => {
-    try {
-      if (todo.isNew) {
-        setTodos((prevTodos) =>
-          prevTodos.map((item) => (item.id === id ? { ...item, completed } : item))
-        );
-      } else {
-        await updateTodo(id, { completed });
-        setTodos((prevTodos) =>
-          prevTodos.map((item) => (item.id === id ? { ...item, completed } : item))
-        );
-      }
-    } catch (error) {
-      console.error('Error updating todo:', error);
-    }
-  };
-
   const handleEditTodo = async () => {
     if (editTodoText.trim() && editTodoText !== todo.todo) {
       setIsSaving(true);
@@ -93,7 +76,7 @@ function TodoItem({ todo }) {
       setHoveredTodoId(id);
       const timer = setTimeout(() => {
         setBlurActive(true);
-      }, 5000);
+      }, 1000);
       setHoverTimer(timer);
     }
   };
@@ -219,3 +202,7 @@ function TodoItem({ todo }) {
 }
 
 export default TodoItem;
+
+
+
+
